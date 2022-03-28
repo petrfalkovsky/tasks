@@ -1,16 +1,24 @@
-# tasks
+# Тестовое задание Flutter Junior
+от компании [PushKeen](https://pushkeen.ru/) для [Тереньтева Петра](https://career.habr.com/poteryal_trusy)
 
-A new Flutter project.
+## Приложение Задачи
+используемые технологии: Flutter/Dart, Git, Path Provider, Figma
 
-## Getting Started
+## Функционал приложения:
+1. Экран приложения должен соответствовать макету: https://www.figma.com/file/VTiPXedx9yZDpU8taS9yo3/Task-List
+2. Должна присутствовать функция добавления новых задач: при нажатии на кнопку «+», в начале списка появляется новая задача с однострочным полем ввода и открывается клавиатура для заполнения названия задачи, при нажатии Ввода или закрытии клавиатуры, задача сохраняется.
+3. Должна присутствовать функция изменения состояния задачи «выполнена» и «не выполнена» в обе стороны: при нажатии на невыполненную задачу, флажок становится отмеченным, при нажатии на выполненную задачу, флажок соотвественно становится неактивным.
+## Требования:
+- данные со списком задач должны находиться в хранилище приложения, допускается использование любого варианта на своё усмотрение. Желательно, чтобы хранилище было постоянное, но можно использовать и временные хранилища;
+- риложение должно быть собрано под обе платформы: iOS и Android;
+- функции редактирования названия задач и их удаления не требуются.
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## apk можно [скачать по ссылке (в процессе)]()
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+# Резюме разработчика
+- на русском языке [в гугл док](https://docs.google.com/document/d/1CCfJFvgmqnxjfiOAsmCUO2wQwqHyatsAuDBLwni1FnI/edit)
+Запись собеседования, интервью для защиты Flutter Junior (в процессе)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
+гифка в процессе
