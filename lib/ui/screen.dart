@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:tasks/plugins/path_provider.dart';
-import 'package:tasks/widgets/tasklist.dart';
+import 'package:tasks/ui/widgets/tasklist.dart';
 
 class Screen extends StatefulWidget {
   const Screen({Key? key}) : super(key: key);
@@ -14,6 +14,7 @@ class Screen extends StatefulWidget {
 class _ScreenState extends State<Screen> {
   List _myList = [];
   final _textfieldController = TextEditingController();
+  String? _name;
 
   @override
   void initState() {
@@ -25,7 +26,6 @@ class _ScreenState extends State<Screen> {
     });
   }
 
-// kujhg
   void _addTask() {
     if (_textfieldController.text != "") {
       setState(() {
@@ -37,6 +37,33 @@ class _ScreenState extends State<Screen> {
         PathProvider.saveData(_myList);
       });
     }
+  }
+
+  void _create(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Add item'),
+            content: Form(
+              child: Column(
+                children: <Widget>[
+                  TextFormField(
+                      controller: _textfieldController,
+                      onEditingComplete: _addTask,
+                      autofocus: true,
+                      decoration: InputDecoration(labelText: 'item name'),
+                      onChanged: (name) {
+                        _name = name;
+                      })
+                ],
+              ),
+            ),
+            // actions: <Widget>[
+            //   ElevatedButton(child: Text('Save'), onPressed: _addTask)
+            // ],
+          );
+        });
   }
 
   @override
@@ -61,8 +88,9 @@ class _ScreenState extends State<Screen> {
                   ),
                 ),
                 ElevatedButton(
-                  child: const Text("Add"),
-                  onPressed: _addTask,
+                  child: const Text("Adds"),
+                  onPressed: () => _create(context),
+                  // onPressed: _addTask,
                 ),
               ],
             ),
