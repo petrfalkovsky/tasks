@@ -52,12 +52,12 @@ class _TaskListState extends State<TaskList> {
               ),
               direction: DismissDirection.startToEnd,
               child: SwitchListTile(
-                title: Text(_myList[index]["title"]),
+                title: Text(_myList[index]["title"]), // текст
                 value: _myList[index]["done"],
                 activeColor: Colors.red,
                 secondary: CircleAvatar(
-                  foregroundColor: Colors.white,
-                  backgroundColor: Colors.red,
+                  foregroundColor: const Color.fromRGBO(87, 87, 103, 1),
+                  backgroundColor: const Color.fromRGBO(252, 252, 252, 1),
                   child:
                       Icon(_myList[index]["done"] ? Icons.check : Icons.close),
                 ),
@@ -99,3 +99,26 @@ class _TaskListState extends State<TaskList> {
     );
   }
 }
+
+
+/* //sdfsdf
+
+
+bool selected = true;
+
+//...
+
+Widget build(BuildContext context) {
+	return Scaffold(
+    	body: Center(
+          child: IconButton(
+              icon: Icon( selected ? Icons.celebration : Icons.title),
+              onPressed: () {
+                setState(() {
+                  selected = !selected;
+                });
+              },
+          ), //IconButton
+   		), //Center
+    ); //Scaffold
+} */

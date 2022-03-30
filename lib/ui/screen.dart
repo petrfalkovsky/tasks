@@ -14,6 +14,7 @@ class Screen extends StatefulWidget {
 class _ScreenState extends State<Screen> {
   List _myList = [];
   final _textfieldController = TextEditingController();
+  // ignore: unused_field
   String? _name;
 
   @override
@@ -35,33 +36,65 @@ class _ScreenState extends State<Screen> {
         _myList.add(newList);
         _textfieldController.text = "";
         PathProvider.saveData(_myList);
+        Navigator.of(context).pop();
       });
     }
   }
 
   void _create(BuildContext context) {
     showDialog(
+        barrierDismissible: false,
         context: context,
         builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Add item'),
-            content: Form(
-              child: Column(
-                children: <Widget>[
-                  TextFormField(
-                      controller: _textfieldController,
-                      onEditingComplete: _addTask,
-                      autofocus: true,
-                      decoration: InputDecoration(labelText: 'item name'),
-                      onChanged: (name) {
-                        _name = name;
-                      })
-                ],
-              ),
-            ),
-            // actions: <Widget>[
-            //   ElevatedButton(child: Text('Save'), onPressed: _addTask)
-            // ],
+          return SingleChildScrollView(
+            reverse: true,
+            child: AlertDialog(
+                clipBehavior: Clip.hardEdge,
+                contentPadding: const EdgeInsets.fromLTRB(24.0, 1.0, 1.0, 1.0),
+                scrollable: true,
+                content: Stack(
+                  children: <Widget>[
+                    Form(
+                      child: Column(
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(
+                                1.0, 40.0, 30.0, 20.0),
+                            child: TextFormField(
+                                controller: _textfieldController,
+                                onEditingComplete: _addTask,
+                                autofocus: true,
+                                decoration: const InputDecoration(
+                                    labelText: 'New task'),
+                                onChanged: (name) {
+                                  _name = name;
+                                }),
+                          )
+                        ],
+                      ),
+                    ),
+                    Positioned(
+                      top: 5.0,
+                      right: 5.0,
+                      child: FloatingActionButton(
+                        hoverElevation: 0.1,
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Icon(Icons.close,
+                            color: Color.fromRGBO(87, 87, 103, 1)),
+                        shape: RoundedRectangleBorder(
+                            side: const BorderSide(
+                                color: Color.fromRGBO(235, 235, 235, 1),
+                                width: 1),
+                            borderRadius: BorderRadius.circular(80)),
+                        backgroundColor: const Color.fromRGBO(242, 243, 255, 1),
+                        mini: true,
+                        elevation: 0.1,
+                      ),
+                    ),
+                  ],
+                )),
           );
         });
   }
@@ -69,34 +102,42 @@ class _ScreenState extends State<Screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Task List"),
-        centerTitle: true,
-      ),
-      body: Column(
-        children: <Widget>[
-          Container(
-            padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
-            child: Row(
+      body: Padding(
+        padding: const EdgeInsets.all(64.0),
+        child: Column(
+          children: <Widget>[
+            Row(
               children: <Widget>[
-                Expanded(
-                  child: TextField(
-                    controller: _textfieldController,
-                    decoration: const InputDecoration(
-                      labelText: "New Task",
-                    ),
+                const Text(
+                  'Tasks',
+                  style: TextStyle(
+                    fontFamily: 'Inter',
+                    fontSize: 56,
                   ),
                 ),
-                ElevatedButton(
-                  child: const Text("Adds"),
+                const Spacer(),
+                OutlinedButton(
                   onPressed: () => _create(context),
-                  // onPressed: _addTask,
-                ),
+                  child: Image.asset("assets/add_icon.png"),
+                  style: OutlinedButton.styleFrom(
+                    backgroundColor: const Color.fromRGBO(242, 243, 255, 1),
+                    fixedSize: const Size(56, 56),
+                    primary: const Color.fromRGBO(235, 235, 235, 1),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    side: const BorderSide(
+                        width: 1, color: Color.fromRGBO(235, 235, 235, 1)),
+                  ),
+                )
               ],
             ),
-          ),
-          TaskList(_myList),
-        ],
+            const Padding(
+                padding: EdgeInsets.only(top: 32, bottom: 32),
+                child: Divider(height: 1)),
+            TaskList(_myList),
+          ],
+        ),
       ),
     );
   }
