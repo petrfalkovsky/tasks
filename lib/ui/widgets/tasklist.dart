@@ -52,6 +52,8 @@ class _TaskListState extends State<TaskList> {
               ),
               direction: DismissDirection.startToEnd,
               child: SwitchListTile(
+                activeThumbImage: const NetworkImage(
+                    'https://lists.gnu.org/archive/html/emacs-devel/2015-10/pngR9b4lzUy39.png'),
                 title: Text(_myList[index]["title"]), // текст
                 value: _myList[index]["done"],
                 activeColor: Colors.red,

@@ -2,7 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:tasks/plugins/path_provider.dart';
-import 'package:tasks/ui/widgets/tasklist.dart';
+
+import 'widgets/taskcard_widget.dart';
 
 class Screen extends StatefulWidget {
   const Screen({Key? key}) : super(key: key);
@@ -105,24 +106,26 @@ class _ScreenState extends State<Screen> {
       body: Padding(
         padding: const EdgeInsets.all(64.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Row(
               children: <Widget>[
                 const Text(
                   'Tasks',
                   style: TextStyle(
-                    fontFamily: 'Inter',
+                    fontFamily: 'Inter Bold',
                     fontSize: 56,
                   ),
                 ),
                 const Spacer(),
                 OutlinedButton(
                   onPressed: () => _create(context),
-                  child: Image.asset("assets/add_icon.png"),
+                  child: Image.asset("assets/images/add_icon.png",
+                      color: const Color.fromRGBO(87, 87, 103, 1)),
                   style: OutlinedButton.styleFrom(
                     backgroundColor: const Color.fromRGBO(242, 243, 255, 1),
                     fixedSize: const Size(56, 56),
-                    primary: const Color.fromRGBO(235, 235, 235, 1),
+                    primary: const Color.fromARGB(255, 194, 195, 206),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(6),
                     ),
@@ -133,9 +136,17 @@ class _ScreenState extends State<Screen> {
               ],
             ),
             const Padding(
-                padding: EdgeInsets.only(top: 32, bottom: 32),
-                child: Divider(height: 1)),
-            TaskList(_myList),
+                padding: EdgeInsets.only(top: 32, bottom: 16),
+                child: Divider(
+                    height: 1, color: Color.fromRGBO(235, 235, 235, 1))),
+            OneTaskWidget(
+              text: 'Create youe first false',
+              isDone: false,
+            ),
+            OneTaskWidget(
+              text: 'Create youe first true',
+              isDone: true,
+            ),
           ],
         ),
       ),
